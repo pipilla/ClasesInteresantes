@@ -35,8 +35,6 @@ public class EstudioEstadisticoIMC {
             if (contadorImc == 0) {
                 mayorImc = imc;
                 menorImc = imc;
-                posicionMayorImc = 1;
-                posicionMenorImc = 1;
             }
             if (imc > mayorImc) {
                 mayorImc = imc;
