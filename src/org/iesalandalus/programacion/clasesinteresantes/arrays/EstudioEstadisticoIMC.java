@@ -7,7 +7,7 @@ public class EstudioEstadisticoIMC {
         String nombre;
         int peso;
         int altura;
-        int contadorImc = 1;
+        int contadorImc = 0;
         char respuesta = 's';
         double media = 0;
         double mayorImc = 0;
@@ -22,7 +22,7 @@ public class EstudioEstadisticoIMC {
             System.out.print("Dime el nombre del sujeto nª" + contadorImc + ": ");
             nombre = Entrada.cadena();
             do {
-                System.out.print("Dime el peso en kg del primer sujeto: ");
+                System.out.print("Dime el peso en kg del sujeto: ");
                 peso = Entrada.entero();
             } while (peso <= 0);
             do {
@@ -32,28 +32,32 @@ public class EstudioEstadisticoIMC {
             double alturaMetros = (double) altura / 100;
             double imc = peso / (alturaMetros * alturaMetros);
             System.out.println(imc);
-            if (contadorImc == 1) {
+            if (contadorImc == 0) {
                 mayorImc = imc;
                 menorImc = imc;
+                posicionMayorImc = 1;
+                posicionMenorImc = 1;
             }
             if (imc > mayorImc) {
+                mayorImc = imc;
                 posicionMayorImc = contadorImc;
             }
             if (imc < menorImc) {
+                menorImc = imc;
                 posicionMenorImc = contadorImc;
             }
             conjuntoNombres[contadorImc] = nombre;
             conjuntoImc[contadorImc] = imc;
             media += imc;
             contadorImc++;
-            if (contadorImc > 2) {
+            if (contadorImc > 1) {
                 do {
                     System.out.print("¿Quiéres seguir añadiendo sujetos? s/n:");
                     respuesta = Entrada.caracter();
                 } while (respuesta != 's' && respuesta != 'n');
             }
         } while (respuesta == 's');
-        media /= contadorImc - 1;
+        media /= contadorImc;
         for (int i = 0; i < contadorImc; i++) {
             if (conjuntoImc[i] > media) {
                 sujetosEncimaMedia++;
